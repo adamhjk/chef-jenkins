@@ -1,6 +1,23 @@
 = chef-jenkins
 
-Description goes here.
+Use Jenkins to drive continuous deployment and synchronization of your Chef Environments from a git repository
+
+== How it works
+
+# You should always be within a chef-repo when you use chef-jenkins! (we are, after all, going to get run from jenkins - but see that later on)
+
+# To syncronize a git repository with a chef server - the branch is master by default.
+# You must provide an environment to pin to, which will always be current
+$ chef-jenkins sync --env-to dev
+
+# Propogate the cookbook policy from one environment and make it the policy for another environment
+$ chef-jenkins prop --env-from dev --env-to qa
+
+# Use a config file
+$ chef-jenkins prop --config ~/chef-jenkins.rb --env-from dev --env-to qa
+
+# Use the default config file - jenkins.rb
+$ chef-jenkins prop/sync
 
 == Contributing to chef-jenkins
  
@@ -14,6 +31,6 @@ Description goes here.
 
 == Copyright
 
-Copyright (c) 2011 Adam Jacob. See LICENSE.txt for
+Copyright (c) 2011 Opscode, Inc. See LICENSE.txt for
 further details.
 

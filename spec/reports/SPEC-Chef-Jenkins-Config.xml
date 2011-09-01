@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Chef::Jenkins::Config" tests="6" time="0.002037" failures="0" errors="0" skipped="0">
+  <testcase name="Chef::Jenkins::Config should have a default branch of master" time="0.00014">
+  </testcase>
+  <testcase name="Chef::Jenkins::Config should have a default git repository of nil" time="9.4e-05">
+  </testcase>
+  <testcase name="Chef::Jenkins::Config should have a default chef_server of nil" time="8.9e-05">
+  </testcase>
+  <testcase name="Chef::Jenkins::Config should have a default environemtn of nil" time="9.0e-05">
+  </testcase>
+  <testcase name="Chef::Jenkins::Config should have a default env_from of nil" time="0.000172">
+  </testcase>
+  <testcase name="Chef::Jenkins::Config should have a default env_to of nil" time="0.000127">
+  </testcase>
+  <system-out>
+  </system-out>
+  <system-err>
+  </system-err>
+</testsuite>
