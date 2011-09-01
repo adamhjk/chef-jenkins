@@ -11,7 +11,6 @@ group :development do
   gem "jeweler", "~> 1.6.2"
   gem "rcov", ">= 0"
   gem "ci_reporter", ">= 0"
-  gem "grit", ">= 0"
   gem "chef", ">= 0.10.4"
   gem "mixlib-cli", ">= 0"
   gem "mixlib-config", ">= 0"

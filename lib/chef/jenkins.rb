@@ -16,5 +16,20 @@
 # limitations under the License.
 #
 
-require 'chef/jenkins'
+require 'rubygems'
+require 'chef/jenkins/config'
 
+class Chef
+  class Jenkins
+    # if we have never run, upload everything, then store the ENV[GIT_COMMIT]
+    # from jenkins
+    #
+    # if we can reload the last SHA of HEAD, do git diff --name-only
+    # ENV[GIT_COMMIT] LAST_SHA. If the changed files are cookbooks, roles,
+    # environments, nodes, whatever, run the syntax check and then upload
+    # them.
+    def update
+    end
+
+  end
+end

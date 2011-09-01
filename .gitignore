@@ -14,6 +14,9 @@ doc
 # jeweler generated
 pkg
 
+# ci integration
+spec/reports/
+
 # Have editor/IDE/OS specific files you need to ignore? Consider using a global gitignore: 
 #
 # * Create a file at ~/.gitignore
@@ -27,7 +30,7 @@ pkg
 #
 # For MacOS:
 #
-#.DS_Store
+.DS_Store
 
 # For TextMate
 #*.tmproj
