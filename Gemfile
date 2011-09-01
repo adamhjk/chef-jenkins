@@ -15,4 +15,5 @@ group :development do
   gem "mixlib-cli", ">= 0"
   gem "mixlib-config", ">= 0"
   gem "mixlib-log", ">= 0"
+  gem "git", ">= 1.2.5"
 end

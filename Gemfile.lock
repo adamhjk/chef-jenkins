@@ -76,6 +76,7 @@ DEPENDENCIES
   bundler (~> 1.0.0)
   chef (>= 0.10.4)
   ci_reporter
+  git (>= 1.2.5)
   jeweler (~> 1.6.2)
   mixlib-cli
   mixlib-config

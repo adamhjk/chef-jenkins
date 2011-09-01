@@ -21,7 +21,6 @@ require 'chef/config'
 
 class Chef
   class Config
-  
     jenkins({
       # The branch to use
       :branch => "master",
@@ -33,7 +32,13 @@ class Chef
       :env_to => nil,
 
       # The directory holding your git repository - defaults to Dir.pwd 
-      :repo_dir => Dir.pwd
+      :repo_dir => Dir.pwd,
+
+      # The git username
+      :git_user => "Jenkins CI",
+
+      # The git email
+      :git_email => "jenkins@example.com",
     })
   end
 end

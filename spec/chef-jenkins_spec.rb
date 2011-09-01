@@ -20,6 +20,8 @@ require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
 describe "Chef::Jenkins" do
   before(:each) do
+    AH.reset!
+    Chef::Config.from_file(AH.file("config.rb"))
     @cj = Chef::Jenkins.new("/Users/adam/src/sandbox/opscode/environments/opscode")
   end
 
@@ -30,10 +32,6 @@ describe "Chef::Jenkins" do
   end
 
   describe "bump_patch_level" do
-    before(:each) do
-      AH.reset!
-    end
-
     it "should update metadata.rb to have an incremented patch version" do
       @cj.bump_patch_level(AH.file("metadata.rb"))
       has_correct_version = false

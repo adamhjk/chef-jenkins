@@ -20,11 +20,17 @@ require 'rubygems'
 require 'chef/jenkins/config'
 require 'chef/config'
 require 'chef/log'
-require 'tempfile'
+require 'git'
 
 class Chef
   class Jenkins
     VERSION = "0.1.0"
+
+    def initialize
+      @git = Git.open(Chef::Config[:jenkins][:repo_dir])
+      @git.config("user.name", Chef::Config[:jenkins][:git_user])
+      @git.config("user.email", Chef::Config[:jenkins][:git_email])
+    end
 
     def bump_patch_level(metadatarb)
       File.open(metadatarb, 'r+') do |f|
@@ -47,7 +53,8 @@ class Chef
       end
     end
 
-    def check_for_cookbook_changes
+    def commit_changes(cookbook_list)
+      @git.commit("Automated cookbook patch level update by Chef Jenkins", :add_all => true)
     end
     
     # if we have never run, upload everything, then store the ENV[GIT_COMMIT]
