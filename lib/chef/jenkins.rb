@@ -18,10 +18,34 @@
 
 require 'rubygems'
 require 'chef/jenkins/config'
+require 'chef/config'
+require 'chef/log'
+require 'tempfile'
 
 class Chef
   class Jenkins
     VERSION = "0.1.0"
+
+    def bump_patch_level(metadatarb)
+      File.open(metadatarb, 'r+') do |f|
+        lines = f.readlines
+        lines.each do |line|
+          if line =~ /^version\s+["'](\d+)\.(\d+)\.(\d+)["'].*$/
+            major = $1
+            minor = $2
+            patch = $3
+            new_patch = patch.to_i + 1
+            Chef::Log.info("Incrementing #{metadatarb} version from #{major}.#{minor}.#{patch} to #{major}.#{minor}.#{new_patch}") 
+            line.replace("version '#{major}.#{minor}.#{new_patch}'\n")
+          end
+        end
+        f.pos = 0
+        lines.each do |line|
+          f.print line
+        end
+        f.truncate(f.pos)
+      end
+    end
 
     # if we have never run, upload everything, then store the ENV[GIT_COMMIT]
     # from jenkins
@@ -30,7 +54,25 @@ class Chef
     # ENV[GIT_COMMIT] LAST_SHA. If the changed files are cookbooks, roles,
     # environments, nodes, whatever, run the syntax check and then upload
     # them.
-    def update
+    def sync(git_repo_path, chef_environment)
+      # if never run
+      #   bump all patch levels
+      #   write out HEAD shasum
+      #   commit
+      #   push
+      #     on push fail, rebase
+      #     on rebase failure, die
+      #   exit 0
+      
+
+
+      #  if run before
+      #   for each modified cookbook
+      #     bump patch levels
+      #   commit
+      #   push
+      #     on push fail, rebase
+      #     on rebase failure, die
     end
 
   end

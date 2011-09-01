@@ -28,30 +28,23 @@ describe "Chef::Jenkins" do
       @cj.should be_a_kind_of(Chef::Jenkins)
     end
   end
-end
 
-describe "Chef::Jenkins::Config" do
-  it "should have a default branch of master" do
-    Chef::Jenkins::Config[:branch].should == "master"
-  end
+  describe "bump_patch_level" do
+    before(:each) do
+      AH.reset!
+    end
 
-  it "should have a default git repository of nil" do
-    Chef::Jenkins::Config[:repo].should == nil 
-  end
-
-  it "should have a default chef_server of nil" do
-    Chef::Jenkins::Config[:chef_server].should == nil 
-  end
-
-  it "should have a default env_from of nil" do
-    Chef::Jenkins::Config[:env_from].should == nil 
-  end
-
-  it "should have a default env_to of nil" do
-    Chef::Jenkins::Config[:env_from].should == nil 
-  end
-
-  it "should have a default cwd argument of nil" do
-    Chef::Jenkins::Config[:cwd].should == nil
+    it "should update metadata.rb to have an incremented patch version" do
+      @cj.bump_patch_level(AH.file("metadata.rb"))
+      has_correct_version = false
+      IO.foreach(AH.file("metadata.rb")) do |line|
+        if line =~ /^version '0\.99\.5'$/
+          has_correct_version = true
+          break
+        end
+      end
+      has_correct_version.should == true
+    end
   end
 end
+

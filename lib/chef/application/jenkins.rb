@@ -83,7 +83,6 @@ class Chef::Application::Jenkins < Chef::Application
     elsif ARGV[0] == "prop"
       jenkins.prop
     end
-
     exit 0
   end
 
