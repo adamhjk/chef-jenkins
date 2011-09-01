@@ -47,6 +47,9 @@ class Chef
       end
     end
 
+    def check_for_cookbook_changes
+    end
+    
     # if we have never run, upload everything, then store the ENV[GIT_COMMIT]
     # from jenkins
     #

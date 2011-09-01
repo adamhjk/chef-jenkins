@@ -23,6 +23,10 @@ module AH
     File.expand_path(File.join(INFLIGHT, filename))
   end
 
+  def self.repo_path
+    File.expand_path(File.join(File.dirname(__FILE__), ".."))
+  end
+
 end
 
 RSpec.configure do |config|
