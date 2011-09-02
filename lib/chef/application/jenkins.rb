@@ -73,71 +73,20 @@ class Chef::Application::Jenkins < Chef::Application
     :exit         => 0
 
   # Run knife
-  def run
+  def run_application
     Mixlib::Log::Formatter.show_time = false
-    validate_and_parse_options
-    quiet_traps
     jenkins = Chef::Jenkins.new
     if ARGV[0] == "sync"
       jenkins.sync
     elsif ARGV[0] == "prop"
       jenkins.prop
+    else
+      Chef::Application.fatal!("You must provide sync or prop as the first argument")
     end
     exit 0
   end
 
-  private
-
-  def quiet_traps
-    trap("TERM") do
-      exit 1
-    end
-
-    trap("INT") do
-      exit 2
-    end
-  end
-
-  def validate_and_parse_options
-    # Checking ARGV validity *before* parse_options because parse_options
-    # mangles ARGV in some situations
-    if no_command_given?
-      print_help_and_exit(1, NO_COMMAND_GIVEN)
-    elsif no_subcommand_given?
-      if (want_help? || want_version?)
-        print_help_and_exit
-      else
-        print_help_and_exit(2, NO_COMMAND_GIVEN)
-      end
-    end
-  end
-
-  def no_subcommand_given?
-    ARGV[0] =~ /^-/
-  end
-
-  def no_command_given?
-    ARGV.empty?
-  end
-
-  def want_help?
-    ARGV[0] =~ /^(--help|-h)$/
-  end
-
-  def want_version?
-    ARGV[0] =~ /^(--version|-v)$/
-  end
-
-  def print_help_and_exit(exitcode=1, fatal_message=nil)
-    Chef::Log.error(fatal_message) if fatal_message
-
-    begin
-      self.parse_options
-    rescue OptionParser::InvalidOption => e
-      puts "#{e}\n"
-    end
-    puts self.opt_parser
-    exit exitcode
+  def setup_application
   end
 
 end

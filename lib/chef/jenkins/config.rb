@@ -34,6 +34,9 @@ class Chef
       # The directory holding your git repository - defaults to Dir.pwd 
       :repo_dir => Dir.pwd,
 
+      # The repo to push changes to
+      :repo_url => nil,
+
       # The git username
       :git_user => "Jenkins CI",
 

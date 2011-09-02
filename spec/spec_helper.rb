@@ -30,5 +30,4 @@ module AH
 end
 
 RSpec.configure do |config|
-  
 end
