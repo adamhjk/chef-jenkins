@@ -79,7 +79,7 @@ class Chef::Application::Jenkins < Chef::Application
     if ARGV[0] == "sync"
       jenkins.sync
     elsif ARGV[0] == "prop"
-      jenkins.prop
+      jenkins.prop(config[:env_from], config[:env_to])
     else
       Chef::Application.fatal!("You must provide sync or prop as the first argument")
     end

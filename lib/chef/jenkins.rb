@@ -144,6 +144,13 @@ class Chef
       cu.config[:freeze] = true
       cu.run
     end
+
+    def prop(env_from=Chef::Config[:jenkins][:env_from], env_to=Chef::Config[:jenkins][:env_to])
+      from = Chef::Environment.load(env_from)  
+      to = Chef::Environment.load(env_to)
+      to.cookbook_versions(from.cookbook_versions)
+      to.save
+    end
     
     def sync(cookbook_path=Chef::Config[:cookbook_path], repo_dir=Chef::Config[:jenkins][:repo_dir])
       add_upstream
