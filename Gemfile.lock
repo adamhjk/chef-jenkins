@@ -67,7 +67,7 @@ GEM
       polyglot
       polyglot (>= 0.3.1)
     uuidtools (2.1.2)
-    yajl-ruby (0.8.3)
+    yajl-ruby (1.4.1)
 
 PLATFORMS
   ruby
